@@ -6,7 +6,7 @@
 int ***read_marks()
 {
 	int ***marks;
-	int subjects_count, subject_counter, students_count, student_counter, sections_count, section_counter;
+	int subjects_count, subject_counter, students_count, student_counter, sections_count, section_counter, counter;
 	printf("Enter number of sections are there: ");
 	scanf("%d", &sections_count);
 	printf("Enter number of students in each section: ");
@@ -14,14 +14,11 @@ int ***read_marks()
 	printf("Enter number of subjects for each student: ");
 	scanf("%d", &subjects_count);
 	marks = (int***)malloc((sections_count + 3) * sizeof(int**));
-	marks[0] = (int **)malloc(sizeof(int*));
-	marks[1] = (int **)malloc(sizeof(int*));
-	marks[2] = (int **)malloc(sizeof(int*));
-
-	*marks[0] = (int *)malloc(sizeof(int));
-	*marks[1] = (int *)malloc(sizeof(int));
-	*marks[2] = (int *)malloc(sizeof(int));
-
+	for (counter = 0; counter < 3; counter ++)
+	{
+		marks[counter] = (int **)malloc(sizeof(int*));
+		*marks[counter] = (int *)malloc(sizeof(int));
+	}
 	*(*(marks[0])) = sections_count;
 	*(*(marks[1])) = students_count;
 	*(*(marks[2])) = subjects_count;
@@ -69,4 +66,5 @@ int main()
 			}
 		}
 	}
+
 }
